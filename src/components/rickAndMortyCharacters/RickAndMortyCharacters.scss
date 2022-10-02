@@ -1,0 +1,27 @@
+@import "~antd/dist/antd.css";
+
+.characters {
+  padding-bottom: 20px;
+  
+  &-title{
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
+    background-color: cadetblue;
+    text-align: center;
+    height: 100px;
+    margin-bottom: 40px;
+    padding-top: 10px;
+  }
+
+  &-pager {
+    text-align: center;
+  }
+  
+  &-list {
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
