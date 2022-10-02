@@ -22,12 +22,12 @@ const Character: React.FC<{ data: CharacterModel }> = ({ data }) => {
           <div className="character-details-info-title">
             Last known location:
           </div>
-          <div>{data.location.name}</div>
+          <div className="character-details-info-value" title={data.location.name}>{data.location.name}</div>
         </div>
         {data.type ? (
           <div className="character-details-info">
             <div className="character-details-info-title">Type:</div>
-            <div>{data.type}</div>
+            <div className="character-details-info-value" title={data.type}>{data.type}</div>
           </div>
         ) : (
           <></>

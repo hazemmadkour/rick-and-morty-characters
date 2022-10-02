@@ -1,5 +1,4 @@
-import Pagination from "antd/lib/pagination/Pagination";
-import Character from "components/character/Character";
+import { lazy, Suspense } from "react";
 import Loading from "components/common/loading/Loading";
 import { useAppDispatch, useAppSelector } from "hooks/reduxHooks";
 import { useEffect } from "react";
@@ -11,6 +10,16 @@ import {
   charactersSelector,
 } from "store/rickAndMortyCharacter/rickAndMortyCharacterSelector";
 import "./RickAndMortyCharacters.scss";
+import Skeleton from "antd/lib/skeleton/Skeleton";
+
+const Character = lazy(
+  () =>
+    import(/* webpackChunkName: "character" */ "components/character/Character")
+);
+
+const Pagination = lazy(
+  () => import(/* webpackChunkName: "antd" */ "antd/lib/pagination/Pagination")
+);
 
 const RickAndMortyCharacters = () => {
   const disptach = useAppDispatch();
@@ -36,15 +45,17 @@ const RickAndMortyCharacters = () => {
   const buildPager = () => {
     return (
       <div className="characters-pager">
-        <Pagination
-          current={pageNo}
-          defaultCurrent={1}
-          showSizeChanger={false}
-          onChange={onPageChange}
-          pageSize={20}
-          total={charactersCount}
-          disabled={!charactersloaded}
-        />
+        <Suspense fallback={<div />}>
+          <Pagination
+            current={pageNo}
+            defaultCurrent={1}
+            showSizeChanger={false}
+            onChange={onPageChange}
+            pageSize={20}
+            total={charactersCount}
+            disabled={!charactersloaded}
+          />
+        </Suspense>
       </div>
     );
   };
@@ -56,7 +67,11 @@ const RickAndMortyCharacters = () => {
       <div className="characters-list">
         {charactersloaded ? (
           characters.map((character) => (
-            <Character key={character.id} data={character} />
+            <Suspense
+              fallback={<Skeleton style={{ width: 700, marginRight: 20 }} />}
+            >
+              <Character key={character.id} data={character} />
+            </Suspense>
           ))
         ) : (
           <Loading />
