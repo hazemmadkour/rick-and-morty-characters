@@ -19,13 +19,15 @@ const RickAndMortyCharacters = () => {
   const charactersCount = useAppSelector(charactersCountSelector);
   const charactersloaded = useAppSelector(charactersloadedSelector);
 
-  // useEffect(() => {
-  //   disptach(getCharacters());
-  // }, []);
+  useEffect(() => {
+    // @ts-ignore
+    disptach(getCharacters());
+  }, []);
 
-  // useEffect(() => {
-  //   disptach(getCharacters(pageNo));
-  // }, [pageNo]);
+  useEffect(() => {
+    // @ts-ignore
+    disptach(getCharacters(pageNo));
+  }, [pageNo]);
 
   const onPageChange = (page: number) => {
     setPageNo(page);
@@ -60,7 +62,7 @@ const RickAndMortyCharacters = () => {
           <Loading />
         )}
       </div>
-      {charactersloaded?buildPager():<></>}
+      {charactersloaded ? buildPager() : <></>}
     </div>
   );
 };
