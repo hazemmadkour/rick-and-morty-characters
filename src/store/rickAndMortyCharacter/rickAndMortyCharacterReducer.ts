@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
 import { CharacterModel } from "models/CharacterModel";
-import { GET_CHARACTERS, SET_LOADING } from "store/ActionTypes";
+import { GET_CHARACTERS, SET_LOADING } from "store/actionTypes";
 
 type RickAndMortyCharacterDataModel = {
   characters: CharacterModel[];
@@ -15,9 +15,9 @@ const initState: RickAndMortyCharacterDataModel = {
 };
 const reducer = (
   state = initState,
-  action: AnyAction
+  action?: AnyAction
 ): RickAndMortyCharacterDataModel => {
-  switch (action.type) {
+  switch (action?.type) {
     case GET_CHARACTERS: {
       const { totalCount, characters } = action.payload;
       return { ...state, totalCount, characters, loaded: true };

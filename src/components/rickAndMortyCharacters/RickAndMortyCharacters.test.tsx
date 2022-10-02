@@ -1,9 +1,13 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from './RickAndMortyCharacters';
+import React from "react";
+import { render, screen } from "@testing-library/react";
+import RickAndMortyCharacters from "./RickAndMortyCharacters";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+//ToDo: apply extra tests and fix this test
+describe("Rick And Morty Characters", () => {
+  const getCharactersFN = jest.fn();
+
+  test("should get characters for first page", () => {
+    render(<RickAndMortyCharacters />);
+    expect(getCharactersFN).toHaveBeenCalledWith(1);
+  });
 });

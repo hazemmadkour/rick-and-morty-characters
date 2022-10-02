@@ -29,17 +29,12 @@ const RickAndMortyCharacters = () => {
   const charactersloaded = useAppSelector(charactersloadedSelector);
 
   useEffect(() => {
-    // @ts-ignore
     disptach(getCharacters());
   }, []);
 
-  useEffect(() => {
-    // @ts-ignore
-    disptach(getCharacters(pageNo));
-  }, [pageNo]);
-
   const onPageChange = (page: number) => {
     setPageNo(page);
+    disptach(getCharacters(page));
   };
 
   const buildPager = () => {
